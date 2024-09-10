@@ -4,6 +4,12 @@
     padding: 0 128px;
 }
 
+@media screen and (max-width: 990px) {
+    .grid-view {
+        padding: 0 32px;
+    }
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));

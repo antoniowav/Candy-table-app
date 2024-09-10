@@ -8,6 +8,7 @@ import Table from './Table/Table';
 import TableHead from './TableHead/TableHead';
 import TableBody from './TableBody/TableBody';
 import GridView from '../GridView/GridView';
+import ViewSwitch from '../ViewSwitch/ViewSwitch';
 
 export interface DataItem {
     id: number;
@@ -20,14 +21,15 @@ export interface DataItem {
 
 interface DataTableProps {
     isListView: boolean;
+    setIsListView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DataTable: React.FC<DataTableProps> = ({ isListView }) => {
+const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     const [data, setData] = useState<DataItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 610);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 990);
     const [page, setPage] = useState(1);
     const [allData, setAllData] = useState<DataItem[]>([]);
     const [hasMore, setHasMore] = useState(true);
@@ -35,10 +37,10 @@ const DataTable: React.FC<DataTableProps> = ({ isListView }) => {
 
 
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 610);
+        const handleResize = () => setIsMobile(window.innerWidth <= 990);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, [window]);
 
     const fetchData = async (pageNum: number) => {
         if (process.env.REACT_APP_BACKEND_URL) {
@@ -112,48 +114,39 @@ const DataTable: React.FC<DataTableProps> = ({ isListView }) => {
 
     if (error) return <div className="error">{error}</div>;
 
-    // Make mobile view responsive
-
+    // Mobile view
     if (isMobile) {
         return (
-            <div className="container">
-                <h2 className="title">Candy Data</h2>
-                {data.map((item, index) => (
-                    <div key={index} className="card">
-                        {Object.entries(item).map(([key, value]) => (
-                            <p key={key}>
-                                <strong className="strong">{key}:</strong> {value}
-                            </p>
-                        ))}
-                    </div>
-                ))}
-                {hasMore && (
-                    <Button onClick={loadMore} type="primary" title="Load More" />
-                )}
+            <div style={{ marginTop: '20px' }}>
+                <GridView data={data} hasMore={hasMore} loadMore={loadMore} />
             </div>
         );
     }
 
-    // Grid view: WIP
-
+    // Grid view
     if (!isListView) {
         return (
-            <GridView data={data} hasMore={hasMore} loadMore={loadMore} />
+            <>
+                <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
+                <GridView data={data} hasMore={hasMore} loadMore={loadMore} />
+            </>
         )
     }
 
     // List view (default)
-
     return (
-        <div className="data-table__container">
-            <Table>
-                <TableHead onSort={sortData} sortConfig={sortConfig} />
-                <TableBody data={data} hoveredRow={hoveredRow} setHoveredRow={setHoveredRow} />
-            </Table>
-            {hasMore && (
-                <Button onClick={loadMore} type="primary" title="Load More" />
-            )}
-        </div>
+        <>
+            <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
+            <div className="data-table__container">
+                <Table>
+                    <TableHead onSort={sortData} sortConfig={sortConfig} />
+                    <TableBody data={data} hoveredRow={hoveredRow} setHoveredRow={setHoveredRow} />
+                </Table>
+                {hasMore && (
+                    <Button onClick={loadMore} type="primary" title="Load More" />
+                )}
+            </div>
+        </>
     );
 };
 

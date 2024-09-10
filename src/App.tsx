@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import DataTable from './components/DataTable/DataTable';
 import Header from './components/Header/Header';
-import ViewSwitch from './components/ViewSwitch/ViewSwitch';
 
 import './App.css';
 
@@ -11,8 +10,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Header />
-      <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
-      <DataTable isListView={isListView} />
+      <DataTable isListView={isListView} setIsListView={setIsListView} />
     </div>
   );
 };
