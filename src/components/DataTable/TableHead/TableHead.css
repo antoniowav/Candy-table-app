@@ -1,5 +1,6 @@
 .data-table__thead {
     background-color: var(--color--primary);
+    border: 1px solid var(--color--neutral-800);
 }
 
 .data-table__tr {
@@ -13,12 +14,15 @@
     text-align: left;
     padding: 32px 0 32px 64px;
     font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
+    font-size: var(--font--large);
     cursor: pointer;
     transition: color 0.3s ease-in-out;
     vertical-align: middle;
     position: relative;
+}
+
+.data-table__th:hover {
+    color: var(--color--secondary);
 }
 
 .data-table__th-content {
@@ -34,3 +38,4 @@
     cursor: pointer;
     transform: translateY(2px);
 }
+

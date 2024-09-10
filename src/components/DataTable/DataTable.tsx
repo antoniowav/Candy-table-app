@@ -52,8 +52,8 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
                     );
                     newData = response.data;
                     setAllData(newData);
-                    setData(newData.slice(0, 10));
-                    setHasMore(newData.length > 10);
+                    setData(newData.slice(0, 25));
+                    setHasMore(newData.length > 25);
                 } else {
                     const start = (pageNum - 1) * 50;
                     const end = start + 50;
@@ -118,24 +118,6 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
             setHasMore(false);
         }
     };
-
-    useEffect(() => {
-        if (!isListView) {
-            setPage(prevPage => {
-                const newPage = prevPage + 1;
-                fetchData(newPage)
-                    .then((newData) => {
-
-                        setData(newData.slice(0, 24));
-                    });
-                return newPage;
-            });
-
-        } else {
-            setData(allData.slice(0, 10));
-        }
-    }, [isListView]);
-
 
 
     if (loading && page === 1) return (

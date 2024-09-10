@@ -49,7 +49,7 @@ const GridView: React.FC<GridViewProps> = ({ data, hasMore, loadMore }) => {
                     {data.map((item, index) => (
                         <div
                             key={index}
-                            className={`grid-item ${animatedIndexes.includes(index) ? 'fade-in' : ''}`}
+                            className={`grid-item ${animatedIndexes.includes(index) ? 'fade-in' : ''} ${index % 2 === 0 ? '' : 'uneven'}`}
                             onClick={() => handleCopy(item, index)}
                         >
                             <div className="grid-item-col">

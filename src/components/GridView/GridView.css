@@ -31,9 +31,13 @@
     opacity: 0;
 }
 
+.uneven {
+    background-color: var(--color--neutral-900);
+}
+
 .grid-item:hover {
     background-color: var(--color--secondary);
-    transform: scale(1.02);
+    transform: scale(1.02) !important;
     cursor: pointer;
 }
 

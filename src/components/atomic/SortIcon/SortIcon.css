@@ -3,6 +3,11 @@
     cursor: pointer;
 }
 
+.sortIcon__svg:hover {
+    fill: var(--color--secondary) !important;
+}
+
+
 .sortIcon__svg .asc {
     opacity: 1;
 }
