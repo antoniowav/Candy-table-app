@@ -1,0 +1,52 @@
+.viewSwitch__container {
+    display: flex;
+    background-color: var(--color--primary);
+    border-radius: 18px;
+    overflow: hidden;
+    width: 110px;
+    height: 56px;
+    margin: 32px 128px;
+    padding: 8px;
+}
+
+.viewSwitch__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-radius 0.2s ease-in-out;
+    padding: 8px;
+}
+
+.viewSwitch__button.active {
+    background-color: var(--color--orange);
+    border-radius: 15px;
+}
+
+.viewSwitch__icon {
+    width: 24px;
+    height: 24px;
+}
+
+.grid-icon {
+    background: url('/src/assets/gridView.svg') no-repeat center;
+    background-size: contain;
+    
+    &.gridActive {
+        background: url('/src/assets/gridViewWhite.svg') no-repeat center;
+        background-size: contain;
+    }
+}
+
+.list-icon {
+    background: url('/src/assets/listViewWhite.svg') no-repeat center;
+    background-size: contain;
+    
+    &.listActive {
+        background: url('/src/assets/listView.svg') no-repeat center;
+        background-size: contain;
+    }
+}
+
+

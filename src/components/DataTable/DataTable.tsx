@@ -14,9 +14,14 @@ export interface DataItem {
     candy: string;
     eaten: number;
     date: string;
+    isListView: boolean;
 }
 
-const DataTable: React.FC = () => {
+interface DataTableProps {
+    isListView: boolean;
+}
+
+const DataTable: React.FC<DataTableProps> = ({ isListView }) => {
     const [data, setData] = useState<DataItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -127,6 +132,16 @@ const DataTable: React.FC = () => {
             </div>
         );
     }
+
+    // Grid view: WIP
+
+    if (!isListView) {
+        return (
+            <div>hello</div>
+        )
+    }
+
+    // List view (default)
 
     return (
         <div className="data-table__container">
