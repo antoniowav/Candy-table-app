@@ -7,6 +7,7 @@
     height: 56px;
     margin: 32px 128px;
     padding: 8px;
+    position: relative;
 }
 
 .viewSwitch__button {
@@ -15,38 +16,48 @@
     justify-content: center;
     width: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease, border-radius 0.2s ease-in-out;
+    transition: color 0.3s ease;
     padding: 8px;
+    z-index: 1;
 }
 
-.viewSwitch__button.active {
+.viewSwitch__background {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: calc(50% - 8px);
+    height: calc(100% - 16px);
     background-color: var(--color--orange);
     border-radius: 15px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.viewSwitch__container[data-active="list"] .viewSwitch__background {
+    transform: translateX(calc(100%));
 }
 
 .viewSwitch__icon {
     width: 24px;
     height: 24px;
+    transition: background-image 0.3s ease;
 }
 
 .grid-icon {
     background: url('/src/assets/gridView.svg') no-repeat center;
     background-size: contain;
-    
-    &.gridActive {
-        background: url('/src/assets/gridViewWhite.svg') no-repeat center;
-        background-size: contain;
-    }
 }
 
 .list-icon {
     background: url('/src/assets/listViewWhite.svg') no-repeat center;
     background-size: contain;
-    
-    &.listActive {
-        background: url('/src/assets/listView.svg') no-repeat center;
-        background-size: contain;
-    }
 }
 
+.viewSwitch__container[data-active="grid"] .grid-icon {
+    background: url('/src/assets/gridViewWhite.svg') no-repeat center;
+    background-size: contain;
+}
 
+.viewSwitch__container[data-active="list"] .list-icon {
+    background: url('/src/assets/listView.svg') no-repeat center;
+    background-size: contain;
+}

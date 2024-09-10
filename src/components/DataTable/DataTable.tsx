@@ -7,6 +7,7 @@ import Button from '../atomic/Button/Button';
 import Table from './Table/Table';
 import TableHead from './TableHead/TableHead';
 import TableBody from './TableBody/TableBody';
+import GridView from '../GridView/GridView';
 
 export interface DataItem {
     id: number;
@@ -47,8 +48,8 @@ const DataTable: React.FC<DataTableProps> = ({ isListView }) => {
                         `${process.env.REACT_APP_BACKEND_URL?.toString() || ''}`
                     );
                     setAllData(response.data);
-                    setData(response.data.slice(0, 50));
-                    setHasMore(response.data.length > 50);
+                    setData(response.data.slice(0, 10));
+                    setHasMore(response.data.length > 10);
                 } else {
                     const start = (pageNum - 1) * 50;
                     const end = start + 50;
@@ -137,7 +138,7 @@ const DataTable: React.FC<DataTableProps> = ({ isListView }) => {
 
     if (!isListView) {
         return (
-            <div>hello</div>
+            <GridView data={data} hasMore={hasMore} loadMore={loadMore} />
         )
     }
 

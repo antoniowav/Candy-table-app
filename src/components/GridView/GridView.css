@@ -1,0 +1,53 @@
+.grid-view {
+    display: flex;
+    flex-direction: column;
+    padding: 0 128px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: 16px;
+}
+
+.grid-item {
+    padding: 32px;
+    background-color: var(--color--primary);
+    border-radius: 16px;
+    color: var(--color--white);
+    text-align: start;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    gap: 24px;
+}
+
+.grid-item:hover {
+    background-color: var(--color--orange);
+    transform: scale(1.02);
+}
+
+.hover-text {
+    transition: color 0.3s ease-in-out;
+}
+
+.grid-item:hover .hover-text {
+    color: var(--color--white);
+}
+
+.grid-item-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.grid-item-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: 32px;
+}

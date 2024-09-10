@@ -10,15 +10,15 @@ const Header: React.FC = () => {
             <div className="header__left">
                 <Logo />
                 <div className="header__left_titles">
-                    <Title type={"h4"} title="Code test" />
-                    <Title type={"h1"} title="Candy Consumption Data" />
+                    <Title color={"orange"} type={"h4"} title="Code test" />
+                    <Title color={"primary"} type={"h1"} title="Candy Consumption Data" />
                 </div>
             </div>
             <div className="header__right">
                 <ProfilePhoto name="Antonio Piattelli" />
                 <div className="header__right_titles">
-                    <Title type={"h3"} title="Antonio Piattelli" />
-                    <Title type={"p"} title="Fullstack Developer" />
+                    <Title color={"primary"} type={"h3"} title="Antonio Piattelli" />
+                    <Title color={"gray"} type={"p"} title="Fullstack Developer" />
                 </div>
             </div>
         </header>

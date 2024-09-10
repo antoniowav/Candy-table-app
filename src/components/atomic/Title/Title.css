@@ -8,8 +8,7 @@
 .title__h2 {
     color: var(--color--primary);
     margin: 0;  
-    text-align: center;
-    font-size: var(--font--xxlarge);
+    font-size: var(--font--h2);
 }
 
 .title__h3 {
@@ -30,5 +29,21 @@
     color: var(--color--neutral-600);
     margin: 0;  
     text-align: center;
-    font-size: var(--font--medium);
+    font-size: var(--font--large);
+}
+
+.white {
+    color: var(--color--white);
+}
+
+.gray {
+    color: var(--color--neutral-500);
+}
+
+.orange {
+    color: var(--color--orange);
+}
+
+.primary {
+    color: var(--color--primary);
 }
