@@ -57,3 +57,25 @@
     align-items: center;
     gap: 32px;
 }
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grid-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.grid-item.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}

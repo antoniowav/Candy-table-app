@@ -149,7 +149,7 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     return (
         <>
             <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
-            <div className="data-table__container">
+            <div className="data-table__container fade-in">
                 <Table>
                     <TableHead onSort={sortData} sortConfig={sortConfig} />
                     <TableBody data={data} hoveredRow={hoveredRow} setHoveredRow={setHoveredRow} />
@@ -161,6 +161,5 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
         </>
     );
 };
-
 
 export default DataTable;
