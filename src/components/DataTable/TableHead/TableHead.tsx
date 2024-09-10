@@ -15,6 +15,7 @@ const TableHead: React.FC<TableHeadProps> = ({ onSort, sortConfig }) => {
         return sortConfig.key === key ? sortConfig.direction : undefined;
     };
 
+
     return (
         <thead className="data-table__thead">
             <tr className="data-table__tr">

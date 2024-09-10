@@ -45,37 +45,39 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     const fetchData = async (pageNum: number) => {
         if (process.env.REACT_APP_BACKEND_URL) {
             try {
+                let newData: DataItem[] = [];
                 if (pageNum === 1) {
                     const response = await axios.get<DataItem[]>(
                         `${process.env.REACT_APP_BACKEND_URL?.toString() || ''}`
                     );
-                    setAllData(response.data);
-                    setData(response.data.slice(0, 10));
-                    setHasMore(response.data.length > 10);
+                    newData = response.data;
+                    setAllData(newData);
+                    setData(newData.slice(0, 10));
+                    setHasMore(newData.length > 10);
                 } else {
                     const start = (pageNum - 1) * 50;
                     const end = start + 50;
-                    setData(prevData => [...prevData, ...allData.slice(start, end)]);
-                    setHasMore(allData.length > end);
+                    newData = allData.slice(start, end);
                 }
                 setLoading(false);
+                return newData;
             } catch (error) {
                 console.error('Error fetching data:', error);
                 setError('Failed to fetch data. Please try again later.');
                 setLoading(false);
+                return [];
             }
         } else {
             setError('Failed to fetch data. Please try again later.');
             setLoading(false);
+            return [];
         }
     };
-
 
     useEffect(() => {
         fetchData(1);
 
     }, []);
-
 
     const sortData = (key: keyof DataItem) => {
         let direction: 'asc' | 'desc' = 'asc';
@@ -83,16 +85,20 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
             direction = 'desc';
         }
 
-        const sortedData = [...data].sort((a, b) => {
+        const sortedData = sortDataArray([...data], { key, direction });
+
+        setSortConfig({ key, direction });
+        setData(sortedData);
+    };
+
+
+    const sortDataArray = (data: DataItem[], config: { key: keyof DataItem, direction: 'asc' | 'desc' }) => {
+        const { key, direction } = config;
+        return [...data].sort((a, b) => {
             if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
             if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
             return 0;
         });
-
-        setSortConfig({ key, direction });
-        setData(sortedData);
-
-
     };
 
 
@@ -100,13 +106,19 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
         if (data.length < 2000) {
             setPage(prevPage => {
                 const newPage = prevPage + 1;
-                fetchData(newPage);
+                fetchData(newPage)
+                    .then((newData) => {
+                        const mergedData = [...data, ...newData];
+                        const sortedData = sortConfig ? sortDataArray(mergedData, sortConfig) : mergedData;
+                        setData(sortedData);
+                    });
                 return newPage;
             });
         } else {
             setHasMore(false);
         }
     };
+
 
     if (loading && page === 1) return (
         <Loading />
