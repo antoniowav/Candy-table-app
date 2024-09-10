@@ -1,0 +1,12 @@
+.sortIcon__container {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.sortIcon__svg .asc {
+    opacity: 1;
+}
+
+.sortIcon__svg .desc {
+    opacity: 0.3;
+}

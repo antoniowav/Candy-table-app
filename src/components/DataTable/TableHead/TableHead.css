@@ -1,0 +1,36 @@
+.data-table__thead {
+    background-color: var(--color--primary);
+}
+
+.data-table__tr {
+    transition: background-color 0.3s ease-in-out;
+    background-color: var(--color--primary);
+    border: none;
+}
+
+.data-table__th {
+    color: var(--color--neutral-500);
+    text-align: left;
+    padding: 32px 64px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    vertical-align: middle;
+    position: relative;
+}
+
+.data-table__th-content {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 20px;
+}
+
+.sortIcon__container {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+    transform: translateY(2px);
+}

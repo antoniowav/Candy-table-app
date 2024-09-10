@@ -1,0 +1,12 @@
+.profile-photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-photo__image {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+}

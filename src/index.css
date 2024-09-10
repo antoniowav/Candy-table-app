@@ -13,7 +13,7 @@
   --color--neutral-600: #7C7C7A;
   --color--neutral-700: #666664;
   --color--neutral-800: #51504E;
-  --color--neutral-900: #252422;
+  --color--neutral-900: #1C1B1A;
   --color--white: #FFFFFF;
   --color--orange: #FE794E;
   --color--error: #E8532E;
@@ -21,8 +21,20 @@
   --color--info: #2C57E8;
   --color--warning: #EFAB00;
   --color--black: #252422;
+  --font--small: 12px;
+  --font--medium: 14px;
+  --font--large: 16px;
+  --font--xlarge: 18px;
+  --font--xxlarge: 22px;
+  --font--xxxlarge: 26px;
+  --font--xxxxlarge: 36px;
 }
 
+
+html {
+  box-sizing: border-box;
+  background-color: var(--color--neutral-50);
+}
 
 body {
   margin: 0;
@@ -35,5 +47,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+} 
+
+h4 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 14px;
+} 
 
 
