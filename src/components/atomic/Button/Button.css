@@ -1,8 +1,11 @@
 .button__primary {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 41px;
     margin: 20px auto;
     padding: 15px;
-    background-color: var(--color--orange);
+    background-color: var(--color--secondary);
     color: var(--color--white);
     border: none;
     border-radius: 8px;

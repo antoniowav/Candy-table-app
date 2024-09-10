@@ -15,12 +15,11 @@
   --color--neutral-800: #51504E;
   --color--neutral-900: #1C1B1A;
   --color--white: #FFFFFF;
-  --color--orange: #FE794E;
   --color--error: #E8532E;
   --color--success: #58B728;
   --color--info: #2C57E8;
   --color--warning: #EFAB00;
-  --color--black: #252422;
+  --color--black: #252422;
   --font--small: 12px;
   --font--medium: 14px;
   --font--large: 16px;
@@ -73,5 +72,10 @@ p {
   font-size: 14px;
   margin: 0;
 } 
+
+button {
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
 
 

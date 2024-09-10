@@ -9,11 +9,35 @@
 }
 
 .tr-hover {
-    background-color: var(--color--orange);
+    background-color: var(--color--secondary);
+    cursor: pointer;
 }
 
 .data-table__td {
     padding: 32px 64px;
     text-align: start;
     color: var(--color--white);
+}
+
+.success-toast {
+    color: var(--color--white);
+    background-color: var(--color--secondary);
+}
+
+.Toastify__toast-icon {
+    color: var(--color--white);
+
+    svg {
+        fill: var(--color--white);
+    }
+}
+
+.Toastify__progress-bar {
+    background-color: var(--color--white);
+    color: var(--color--white);
+    opacity: 1;
+}
+
+.Toastify__progress-bar--success {
+    background-color: var(--color--white);
 }

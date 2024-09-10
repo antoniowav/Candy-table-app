@@ -17,19 +17,6 @@
     align-items: center;
 }
 
-.card {
-    background-color: white;
-    border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: start;
-}
-
-.strong {
-    font-weight: bold;
-    text-transform: capitalize;
-}
 
 @keyframes fadeIn {
     from {

@@ -119,6 +119,24 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
         }
     };
 
+    useEffect(() => {
+        if (!isListView) {
+            setPage(prevPage => {
+                const newPage = prevPage + 1;
+                fetchData(newPage)
+                    .then((newData) => {
+
+                        setData(newData.slice(0, 24));
+                    });
+                return newPage;
+            });
+
+        } else {
+            setData(allData.slice(0, 10));
+        }
+    }, [isListView]);
+
+
 
     if (loading && page === 1) return (
         <Loading />
