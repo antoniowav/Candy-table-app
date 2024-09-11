@@ -14,7 +14,9 @@ const Button: React.FC<ButtonProps> = ({ title, type, onClick }) => {
         return (
             <button className="button__primary" onClick={onClick}>
                 {title}
-                <Arrow className="button__arrow" />
+                <svg className="button__arrow" xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="none">
+                    <path fill="#fff" d="M12.625 8.651 8.602 4.628l1.06-1.06L15.497 9.4l-5.833 5.834-1.06-1.06 4.022-4.024H3.496v-1.5h9.13" />
+                </svg>
             </button>
         );
     }

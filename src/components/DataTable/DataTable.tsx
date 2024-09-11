@@ -155,7 +155,7 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
                     <TableBody data={data} hoveredRow={hoveredRow} setHoveredRow={setHoveredRow} />
                 </Table>
                 {hasMore && (
-                    <Button onClick={loadMore} type="primary" title="Load More" />
+                    <Button onClick={loadMore} type="primary" title="Load more" />
                 )}
             </div>
         </>

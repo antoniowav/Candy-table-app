@@ -70,7 +70,7 @@ const GridView: React.FC<GridViewProps> = ({ data, hasMore, loadMore }) => {
                         </div>
                     ))}
                 </div>
-                {hasMore && <Button onClick={loadMore} type="primary" title="Load More" />}
+                {hasMore && <Button onClick={loadMore} type="primary" title="Load more" />}
             </div>
         </>
     );
