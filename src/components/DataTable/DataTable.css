@@ -1,8 +1,6 @@
 .data-table__container {
     margin: 0 auto;
     padding: var(--padding--side-xl);
-    margin-top: var(--padding--m);
-    margin-bottom: var(--padding--m);
     background-color: var(--color--neutral-50);
 
 }
@@ -38,4 +36,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin : var(--margin--m) 0;
 }
