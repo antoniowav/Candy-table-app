@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactComponent as Arrow } from "../../../assets/arrow.svg";
 
 import "./Button.css";
 
