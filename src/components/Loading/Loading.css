@@ -1,6 +1,6 @@
 .loading__content {
     text-align: center;
-    padding: 20px;
+    padding: var(--padding--mobile);
     font-size: var(--font--xlarge);
     color: var(--color-primary);
 }

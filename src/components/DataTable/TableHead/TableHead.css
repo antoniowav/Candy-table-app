@@ -4,7 +4,7 @@
 }
 
 .data-table__tr {
-    transition: background-color 0.3s ease-in-out;
+    transition: var(--transition--background);
     background-color: var(--color--primary);
     border: none;
 }
@@ -12,11 +12,11 @@
 .data-table__th {
     color: var(--color--neutral-500);
     text-align: left;
-    padding: 32px 0 32px 64px;
+    padding: var(--padding--tbody);
     font-weight: bold;
     font-size: var(--font--large);
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
+    transition: var(--transition--color);
     vertical-align: middle;
     position: relative;
 }
@@ -28,12 +28,12 @@
 .data-table__th-content {
     display: inline-block;
     vertical-align: middle;
-    padding-right: 20px;
+    padding-right: var(--padding--mobile);
 }
 
 .sortIcon__container {
     display: inline-block;
-    margin-left: 8px;
+    margin-left: var(--padding--xs);
     vertical-align: middle;
     cursor: pointer;
     transform: translateY(2px);

@@ -1,15 +1,15 @@
 .data-table__container {
     margin: 0 auto;
-    padding: 0px 128px;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    padding: var(--padding--side-xl);
+    margin-top: var(--padding--m);
+    margin-bottom: var(--padding--m);
     background-color: var(--color--neutral-50);
 
 }
 .error {
     text-align: center;
-    padding: 20px;
-    font-size: 18px;
+    padding: var(--padding--mobile);
+    font-size: var(--font--xlarge);
     color: var(--color--error);
     display: flex;
     justify-content: center;

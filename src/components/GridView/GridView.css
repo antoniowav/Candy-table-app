@@ -1,12 +1,12 @@
 .grid-view {
     display: flex;
     flex-direction: column;
-    padding: 0 128px;
+    padding: var(--padding--side-xl);
 }
 
 @media screen and (max-width: 990px) {
     .grid-view {
-        padding: 0 32px;
+        padding: var(--padding--side-m);
     }
 }
 
@@ -17,12 +17,12 @@
 }
 
 .grid-item {
-    padding: 32px;
+    padding: var(--padding--m);
     background-color: var(--color--primary);
-    border-radius: 16px;
+    border-radius: var(--border--radius--small);
     color: var(--color--white);
     text-align: start;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    transition: var(--transition--background), var(--transition--transform-ease);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -42,7 +42,7 @@
 }
 
 .hover-text {
-    transition: color 0.3s ease-in-out;
+    transition: var(--transition--color);
 }
 
 .grid-item:hover .hover-text {
@@ -52,7 +52,6 @@
 .grid-item-col {
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
 .grid-item-row {

@@ -4,16 +4,33 @@
     justify-content: center;
     gap: 41px;
     margin: 20px auto;
-    padding: 15px;
+    padding: var(--padding--button);
     background-color: var(--color--secondary);
     color: var(--color--white);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--border--radius--xs);
     cursor: pointer;
     font-size: var(--font--large);
-    transition: background-color 0.3s ease;
+    transition:var(--transition--background);
 }
 
 .button__primary:hover {
     background-color: var(--color--error);
+}
+
+.button__primary:hover .button__arrow {
+    animation: none;
+}
+
+.button__arrow {
+    animation: bounce-horizontal 1s cubic-bezier(.455, .03, .515, .955) infinite alternate;
+}
+
+@keyframes bounce-horizontal {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(8px);
+    }
 }

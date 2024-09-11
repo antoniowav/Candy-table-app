@@ -2,7 +2,7 @@
     width: 100%;
     border-collapse: collapse;
     background-color: var(--color--primary);
-    border-radius: 24px;
+    border-radius: var(--border--radius--large);
     overflow: hidden;
     border: 1px solid  var(--color--neutral-800);
 }

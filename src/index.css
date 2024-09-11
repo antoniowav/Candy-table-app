@@ -20,6 +20,7 @@
   --color--info: #2C57E8;
   --color--warning: #EFAB00;
   --color--black: #252422;
+
   --font--small: 12px;
   --font--medium: 14px;
   --font--large: 16px;
@@ -28,6 +29,34 @@
   --font--xxxlarge: 26px;
   --font--xxxxlarge: 36px;
   --font--h2: 24px;
+
+  --padding--side-xl: 0 128px;
+  --padding--side-l: 0 64px;
+  --padding--side-m: 0 32px;
+  --padding--side-s: 0 16px;
+  --padding--side-xs: 0 8px;
+
+  --padding--xl: 128px;
+  --padding--l: 64px;
+  --padding--m: 32px;
+  --padding--s: 16px;
+  --padding--xs: 8px;
+
+  --padding--header: 32px 64px;
+  --padding--button: 15px;
+  --padding--tbody: 32px 0 32px 64px;
+  --padding--mobile: 20px;
+
+  --border--radius--xs: 8px;
+  --border--radius--small: 16px;
+  --border--radius--medium: 18px;
+  --border--radius--large: 24px;
+
+  --transition--background: background-color 0.3s ease-in-out;
+  --transition--color: color 0.3s ease-in-out;
+  --transition--transform-cubic: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition--transform-ease: transform 0.3s ease-in-out;
+  --transition--bg--image: background-image 0.3s ease-in-out;
 }
 
 
@@ -49,27 +78,27 @@ code {
 }
 
 h1 {
-  font-size: 26px;
+  font-size: var(--font--xxxlarge);
   margin: 0;
 }
 
 h2 {
-  font-size: 22px;
+  font-size: var(--font--xxlarge);
   margin: 0;
 }
 
 h3 {
-  font-size: 18px;
+  font-size: var(--font--xlarge);
   margin: 0;
 } 
 
 h4 {
-  font-size: 16px;
+  font-size: var(--font--large);
   margin: 0;
 }
 
 p {
-  font-size: 14px;
+  font-size: var(--font--medium);
   margin: 0;
   letter-spacing: 5%;
 } 
