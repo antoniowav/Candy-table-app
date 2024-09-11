@@ -9,6 +9,7 @@ import TableHead from './TableHead/TableHead';
 import TableBody from './TableBody/TableBody';
 import GridView from '../GridView/GridView';
 import ViewSwitch from '../ViewSwitch/ViewSwitch';
+import SearchComponent from '../Search/Search';
 
 export interface DataItem {
     id: number;
@@ -16,7 +17,6 @@ export interface DataItem {
     candy: string;
     eaten: number;
     date: string;
-    isListView: boolean;
 }
 
 interface DataTableProps {
@@ -26,6 +26,7 @@ interface DataTableProps {
 
 const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     const [data, setData] = useState<DataItem[]>([]);
+    const [filteredData, setFilteredData] = useState<DataItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -34,13 +35,21 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     const [allData, setAllData] = useState<DataItem[]>([]);
     const [hasMore, setHasMore] = useState(true);
     const [sortConfig, setSortConfig] = useState<{ key: keyof DataItem, direction: 'asc' | 'desc' } | null>(null);
-
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 990);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, [window]);
+
+    useEffect(() => {
+        fetchData(1);
+    }, []);
+
+    useEffect(() => {
+        filterData(searchQuery);
+    }, [searchQuery, data]);
 
     const fetchData = async (pageNum: number) => {
         if (process.env.REACT_APP_BACKEND_URL) {
@@ -53,6 +62,7 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
                     newData = response.data;
                     setAllData(newData);
                     setData(newData.slice(0, 25));
+                    setFilteredData(newData.slice(0, 25));
                     setHasMore(newData.length > 25);
                 } else {
                     const start = (pageNum - 1) * 50;
@@ -74,11 +84,6 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
         }
     };
 
-    useEffect(() => {
-        fetchData(1);
-
-    }, []);
-
     const sortData = (key: keyof DataItem) => {
         let direction: 'asc' | 'desc' = 'asc';
         if (sortConfig && sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -89,8 +94,8 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
 
         setSortConfig({ key, direction });
         setData(sortedData);
+        setFilteredData(sortDataArray([...filteredData], { key, direction }));
     };
-
 
     const sortDataArray = (data: DataItem[], config: { key: keyof DataItem, direction: 'asc' | 'desc' }) => {
         const { key, direction } = config;
@@ -101,6 +106,15 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
         });
     };
 
+    const filterData = (query: string) => {
+        const filtered = data.filter(item =>
+            item.name.toLowerCase().includes(query.toLowerCase()) ||
+            item.candy.toLowerCase().includes(query.toLowerCase()) ||
+            item.date.toLowerCase().includes(query.toLowerCase()) ||
+            item.eaten.toString().toLowerCase().includes(query.toLowerCase())
+        );
+        setFilteredData(filtered);
+    };
 
     const loadMore = () => {
         if (data.length < 2000) {
@@ -111,6 +125,7 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
                         const mergedData = [...data, ...newData];
                         const sortedData = sortConfig ? sortDataArray(mergedData, sortConfig) : mergedData;
                         setData(sortedData);
+                        filterData(searchQuery);
                     });
                 return newPage;
             });
@@ -119,10 +134,7 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
         }
     };
 
-
-    if (loading && page === 1) return (
-        <Loading />
-    );
+    if (loading && page === 1) return <Loading />;
 
     if (error) return <div className="error">{error}</div>;
 
@@ -130,7 +142,12 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     if (isMobile) {
         return (
             <div style={{ marginTop: '20px' }}>
-                <GridView data={data} hasMore={hasMore} loadMore={loadMore} />
+                <SearchComponent data={data} onSearch={setSearchQuery} />
+                {filteredData.length === 0 ? (
+                    <div className="no-results">No results found</div>
+                ) :
+                    <GridView data={filteredData} hasMore={hasMore} loadMore={loadMore} />
+                }
             </div>
         );
     }
@@ -139,25 +156,44 @@ const DataTable: React.FC<DataTableProps> = ({ isListView, setIsListView }) => {
     if (!isListView) {
         return (
             <>
-                <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
-                <GridView data={data} hasMore={hasMore} loadMore={loadMore} />
+                <div className='data-table__switches'>
+                    <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
+                    <SearchComponent data={data} onSearch={setSearchQuery} />
+                </div>
+                {filteredData.length === 0 ? (
+                    <div className="no-results">No results found</div>
+                ) : (
+                    <GridView data={filteredData} hasMore={hasMore} loadMore={loadMore} />
+
+                )}
             </>
-        )
+        );
     }
 
     // List view (default)
     return (
         <>
-            <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
-            <div className="data-table__container fade-in">
-                <Table>
-                    <TableHead onSort={sortData} sortConfig={sortConfig} />
-                    <TableBody data={data} hoveredRow={hoveredRow} setHoveredRow={setHoveredRow} />
-                </Table>
-                {hasMore && (
-                    <Button onClick={loadMore} type="primary" title="Load more" />
-                )}
+            <div className='data-table__switches'>
+                <ViewSwitch isListView={isListView} setIsListView={setIsListView} />
+                <SearchComponent data={data} onSearch={setSearchQuery} />
             </div>
+            {
+                filteredData.length === 0 ? (
+                    <div className="no-results">No results found</div>
+                ) : (
+
+
+                    < div className="data-table__container fade-in">
+                        <Table>
+                            <TableHead onSort={sortData} sortConfig={sortConfig} />
+                            <TableBody data={filteredData} hoveredRow={hoveredRow} setHoveredRow={setHoveredRow} />
+                        </Table>
+                        {hasMore && (
+                            <Button onClick={loadMore} type="primary" title="Load more" />
+                        )}
+                    </div >
+                )
+            }
         </>
     );
 };

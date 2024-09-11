@@ -1,0 +1,45 @@
+.search__container {
+    display: flex;
+    align-items: center;
+    background-color: var(--color--primary);
+    border-radius: var(--border--radius--medium);
+    overflow: hidden;
+    width: 300px;
+    height: 56px;
+    margin: var(--padding--m) var(--padding--xl);
+    padding: var(--padding--xs);
+    position: relative;
+}
+
+@media screen and (max-width: 990px) {
+    .search__container {
+        width: unset;
+        margin: var(--padding--m);
+    }
+    
+}
+
+.search__icon {
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    margin-right: var(--padding--s);
+    margin-left: var(--padding--s);
+    background: url('/src/assets/searchIcon.svg') no-repeat center;
+}
+
+.search__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: var(--padding--xs);
+    font-size: var(--font--medium);
+    background-color: transparent;
+    color: var(--color--white);
+    font-family: 'Poppins', sans-serif;
+}
+
+.search__input:focus {
+    background-color: var(--color--primary-dark);
+    transition: background-color var(--transition--background);
+}

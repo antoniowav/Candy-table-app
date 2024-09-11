@@ -33,3 +33,9 @@
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }
+
+.data-table__switches {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
