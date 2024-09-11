@@ -13,7 +13,7 @@
     color: var(--color--neutral-500);
     text-align: left;
     padding: var(--padding--tbody);
-    font-weight: bold;
+    font-weight: 700;
     font-size: var(--font--large);
     cursor: pointer;
     transition: var(--transition--color);
